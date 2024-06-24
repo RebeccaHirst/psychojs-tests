@@ -82950,6 +82950,7 @@ var KeyPress = class {
     }
 
     getState(keys=[]){
+        let keyEvent = this._circularBuffer[i];
         return keyEvent.status === Keyboard.KeyStatus.KEY_UP
             
     }
