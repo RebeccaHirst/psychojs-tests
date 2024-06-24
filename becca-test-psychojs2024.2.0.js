@@ -82950,7 +82950,7 @@ var KeyPress = class {
     }
 
     getState(keys=[]){
-        return 'hello'
+        return Keyboard.KeyStatus.KEY_DOWN
 
     }
     getKeys({keyList=[], waitRelease=!0, clear=!0}={}) {
