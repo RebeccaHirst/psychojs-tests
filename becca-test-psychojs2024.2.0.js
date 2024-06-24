@@ -82949,18 +82949,28 @@ var KeyPress = class {
         return filteredEvents
     }
 
-    getState(keys=[]){
+    getState(keys = []) {
         if (this._bufferLength === 0)
             return false;
-        let keyPresses = []
-          , i = this._bufferLength === this._bufferSize ? this._bufferIndex : -1;
+
+        let keyPresses = [];
+        let i = this._bufferLength === this._bufferSize ? this._bufferIndex : -1;
+        
         do {
             i = (i + 1) % this._bufferSize;
             let keyEvent = this._circularBuffer[i];
-            return keyEvent.status === Keyboard.KeyStatus.KEY_UP
-        }
             
+            // Check key status and collect key presses
+            if (keyEvent.status === Keyboard.KeyStatus.KEY_UP) {
+                keyPresses.push(keyEvent);
+            }
+        } while (i !== this._bufferIndex && i !== this._bufferSize - 1);
+
+        // Return based on your needs
+        // Here, returning the keyPresses array if you need to return collected key events
+        return keyPresses.length > 0 ? keyPresses : false;
     }
+
     getKeys({keyList=[], waitRelease=!0, clear=!0}={}) {
         if (this._bufferLength === 0)
             return [];
