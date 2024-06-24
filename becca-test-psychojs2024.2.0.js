@@ -82950,8 +82950,15 @@ var KeyPress = class {
     }
 
     getState(keys=[]){
-        let keyEvent = this._circularBuffer[i];
-        return keyEvent.status === Keyboard.KeyStatus.KEY_UP
+        if (this._bufferLength === 0)
+            return false;
+        let keyPresses = []
+          , i = this._bufferLength === this._bufferSize ? this._bufferIndex : -1;
+        do {
+            i = (i + 1) % this._bufferSize;
+            let keyEvent = this._circularBuffer[i];
+            return keyEvent.status === Keyboard.KeyStatus.KEY_UP
+        }
             
     }
     getKeys({keyList=[], waitRelease=!0, clear=!0}={}) {
