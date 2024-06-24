@@ -82949,6 +82949,10 @@ var KeyPress = class {
         return filteredEvents
     }
 
+    getState(keys=[]){
+        return 'hello'
+
+    }
     getKeys({keyList=[], waitRelease=!0, clear=!0}={}) {
         if (this._bufferLength === 0)
             return [];
