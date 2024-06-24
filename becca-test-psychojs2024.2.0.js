@@ -82950,8 +82950,8 @@ var KeyPress = class {
     }
 
     getState(keys=[]){
-        return Keyboard.KeyStatus.KEY_DOWN
-
+        return keyEvent.status === Keyboard.KeyStatus.KEY_UP
+            
     }
     getKeys({keyList=[], waitRelease=!0, clear=!0}={}) {
         if (this._bufferLength === 0)
